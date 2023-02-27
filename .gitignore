@@ -1,0 +1,11 @@
+# Dependency directories
+node_modules/
+
+# Logs
+yarn-error.log
+
+# Lock
+yarn.lock
+
+# dotenv environment variable files
+.env
