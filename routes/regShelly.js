@@ -8,6 +8,6 @@ const regShellyCtrl = require("../controllers/regShelly")
 /**
  * create one register Shelly
  */
-router.post("/", regShellyCtrl.newRegShelly)
+router.post("/:id/:id2", regShellyCtrl.newRegShelly)
 
 module.exports = router
