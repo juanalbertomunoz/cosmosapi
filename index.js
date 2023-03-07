@@ -19,10 +19,12 @@ require('./swagger')(app);
 const dbConnect = require("./config/mongo")
 const authRoutes = require("./routes/auth")
 const regShellyRoutes = require("./routes/regShelly")
+const homeRoutes = require("./routes/home")
 
 //Middleware
 app.use("/api/auth", authRoutes)
 app.use("/api/regShelly", regShellyRoutes)
+app.use("/api/homes", homeRoutes)
 
 app.listen(PORT, () => {
     console.log('Server express is connected in ' + PORT + ' PORT')
