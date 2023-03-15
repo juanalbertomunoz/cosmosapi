@@ -2,12 +2,17 @@ const express = require("express")
 const router = express.Router()
 //const authMiddleware = require("../middleware/session")
 //const checkRol = require("../middleware/rol")
-const regShellyCtrl = require("../controllers/regShelly")
+const alertCtrl = require("../controllers/alert")
 //const { validatorCreateZone, validatorGetZone } = require("../validator/zones")
 
 /**
  * create one register Shelly
  */
-router.post("/:id/:id2", regShellyCtrl.newRegShelly)
+router.post("/:id/:id2/:id3/", alertCtrl.newAlert)
+
+/**
+ *  List alarm specific
+ */
+//router.get("/:id", alertCtrl.getAlerts)
 
 module.exports = router

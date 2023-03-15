@@ -1,7 +1,7 @@
 const homeCtrl = {}
 const Home = require("../models/homes")
 //const { matchedData } = require("express-validator")
-//const { handleHttpError } = require("../utils/handleError")
+const { handleHttpError } = require("../utils/handleError")
 //const { isObjectIdOrHexString } = require("mongoose")
 
 /**
@@ -11,14 +11,16 @@ const Home = require("../models/homes")
  */
 const getHomes = async (req, res) => {
     try{
-      const user = req.res
-      
+      //const user = req.res
+      console.log("body")
+
         const homes = await Home.find()
           res.json(homes)
-          res.send({ data, user})
+          //res.send({ data, user})
+          res.send({ data})
     }catch(e){
         //res.send({data})
-        handleHttpError(e, 'Error_get_homes')
+        handleHttpError(res, 'Error_get_homes')
     }
     
 }
@@ -29,14 +31,15 @@ const getHomes = async (req, res) => {
  */
 const createHome = async (req, res) => {
     try {
-        //const body = matchedData(req)
-        const body = req
+        //const body = matchedData(req.body)
+        const body = req.body
+        console.log(body)
         const data = await Home.create(body)
 
          res.send({ data});
       } catch (e) {
-        console.log(e)
-        handleHttpError(e, "ERROR_CREATE_HOME");
+        
+        handleHttpError(res, "ERROR_CREATE_HOME");
       }
     
 }

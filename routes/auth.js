@@ -21,27 +21,27 @@ const { loginCtrl, registerCtrl } =  require("../controllers/auth")
  *         required: true
  *         unique: true
  *         schema:
- *           type: string
+ *            type: string
  *       - in: query
  *         name: password
  *         required: true
  *         schema:
- *           type: string
+ *            type: string
  *       - in: query
  *         name: idUser
  *         required: true
  *         schema:
- *           type: number  
+ *            type: number  
  *       - in: query
  *         name: phone
  *         required: true
  *         schema:
- *           type: number   
+ *            type: number   
  *       - in: query
  *         name: role
  *         required: true
  *         schema:
- *           type: string       
+ *            type: string       
  *     responses:
  *       '200':
  *         description: Registro de usuario realizado correctamente.

@@ -15,58 +15,78 @@ const homeCtrl = require("../controllers/home")
  *     summary: Registra una vivienda nueva.
  *     description: Retorna la información de la vivienda registrada.
  *     parameters:
- *       - in: query
+ *       - in: body
  *         name: key
  *         description: Identificador unico de la vivienda
  *         required: true
  *         unique: true
-*         schema:
+ *         schema:
  *           type: string
  *       - in: body
  *         name: address
  *         description: Direccion fisica con nomenclatura como en la factura
  *         required: true
  *         schema:
+ *           type: string
+ *       - in: body
+ *         name: gps
+ *         description: Ubicación geo espacial de la vivienda
+ *         required: true
+ *         schema:
  *           type: object
  *           properties:
- *             latitud:
- *              type: number  
- *             longitud:
- *              type: number
+ *              latitud:
+ *                type: number  
+ *              longitud:
+ *                type: number
  *     responses:
  *       '200':
  *         description: Registro de vivienda realizado correctamente.
  *         content:
  *           application/json:
  *             schema:
- *               
  *               type: object
  *               properties:
  *                 key: 
- *                  type: string
+ *                   type: string
  *                 address:
- *                  type: object
- *                   
- * /api/auth/login:
- *   post:
- *     summary: logea un usuario registrado.
- *     description: Retorna la información del usuario logeado, validando el `email` y el `password`.
- *     parameters:
- *       - in: query
- *         name: email
- *         required: true
- *         schema:
- *           type: string
- *       - in: query
- *         name: password
- *         required: true
- *         schema:
- *           type: string 
- * 
- *                  
+ *                   type: string
+ *                 gps:
+ *                   type: object
+ *                   properties:
+ *                     latitud:
+ *                       type: number  
+ *                     longitud:
+ *                       type: number                 
+ *   get:
+ *     summary: Obtener todas las viviendas registradas.
+ *     description: Retorna una lista con la información de todas las viviendas registradas en la base de datos.
+ *     responses:
+ *       '200':
+ *         description: Lista de viviendas obtenida correctamente.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   key:
+ *                     type: string
+ *                   address:
+ *                     type: string
+ *                   gps:
+ *                     type: object
+ *                     properties:
+ *                       latitud:
+ *                         type: number  
+ *                       longitud:
+ *                         type: number                 
  */
+
+
 /**
- *  List all cuvis
+ *  List all homes
  */
 router.get("/", homeCtrl.getHomes)
 

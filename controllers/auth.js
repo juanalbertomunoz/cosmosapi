@@ -14,7 +14,7 @@ const registerCtrl = async (req, res) => {
 try{
 
      req = matchedData(req)
-    const password = await encrypt(req.password)
+     const password = await encrypt(req.password)
      const body = {...req, password}
      //const data = await usersModels.save(body)
      const newuser = new usersModels(body)
@@ -27,7 +27,7 @@ try{
      }
      res.send({data})
     }catch(e){
-        handleHttpError (e, "ERROR_REGISTER_USER")
+        handleHttpError(res, "ERROR_REGISTER_USER")
     }
  }
 
@@ -57,7 +57,7 @@ try{
             user
         }
 
-        res. send({data})
+        res.send({data})
     }catch(e){
         handleHttpError(res, "ERROR_LOGIN_USER")
     }

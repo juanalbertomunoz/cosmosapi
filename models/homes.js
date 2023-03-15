@@ -13,11 +13,11 @@ const HomeScheme = new mongoose.Schema(
                 },
         gps: {
             latitud: {
-                    type: String,
+                    type: Number,
                     requerided: true
                     },
             longitud: {
-                   type: String,
+                   type: Number,
                     requerired: true
                  }
              }

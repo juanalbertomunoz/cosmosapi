@@ -1,6 +1,6 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require("cors")
-require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -18,15 +18,18 @@ require('./swagger')(app);
  */
 const dbConnect = require("./config/mongo")
 const authRoutes = require("./routes/auth")
-const regShellyRoutes = require("./routes/regShelly")
+//const regShellyRoutes = require("./routes/alert")
 const homeRoutes = require("./routes/home")
+const alertRoutes = require("./routes/alert")
+
 
 //Middleware
 app.use("/api/auth", authRoutes)
-app.use("/api/regShelly", regShellyRoutes)
+//app.use("/api/regShelly", regShellyRoutes)
+app.use("/api/alerts", alertRoutes)
 app.use("/api/homes", homeRoutes)
 
+dbConnect()
 app.listen(PORT, () => {
     console.log('Server express is connected in ' + PORT + ' PORT')
 })
-dbConnect()
