@@ -37,11 +37,32 @@ const getAlert = async (req, res) => {
     const data = await Alert.find({
       key :  id
     })
-    console.log (data)
-    res.send({ data })
+    console.log ([data])
+    res.send([ data ])
   }catch(e){
     handleHttpError(res, "ERROR_GET_ALERT_HOME")
   }
+}
+
+/**
+ * Update cuvi
+ * @param {*} req 
+ * @param {*} res 
+ */
+const updateAlert = async (req, res) => {
+  try {
+    //const body = matchedData(req)
+    //const body = req.body
+    //console.log("body", body)
+    //const bodyclean = req.body
+    const data = await Alert.findByIdAndUpdate(req.params.id, req.body)
+    console.log("data", data)
+    res.send({ data })
+    } catch (e) {
+      console.log(e)
+      handleHttpError(res, "ERROR_UPDATE_ALARM")
+    }
+  
 }
 
 
@@ -71,4 +92,4 @@ const newAlert = async (req, res) => {
 }
 }*/
 
-module.exports = {newAlert, getAlert}
+module.exports = {newAlert, getAlert, updateAlert}
