@@ -43,5 +43,32 @@ const createHome = async (req, res) => {
       }
     
 }
+/**
+ * get curriculum vitae
+ * @param {*} req 
+ * @param {*} res 
+ */
 
-module.exports = {getHomes, createHome}
+const socketEmit = async (param1, param2, param3) => {
+  try {
+    return io.emit('alertsecurity', { param1, param2, param3 });
+  } catch (error) {
+    console.log("**** ERROR SOCKET EMIT ****", error);
+  }
+}
+
+const getHomesbyid = async (id) => {
+  try{
+    //const user = req.res
+   // console.log("body")
+
+      return await Home.findById(id)
+        
+  }catch(e){
+      //res.send({data})
+      handleHttpError(res, 'Error_get_homes')
+  }
+  
+}
+
+module.exports = {getHomes, createHome, getHomesbyid}

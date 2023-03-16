@@ -1,7 +1,7 @@
 const { handleHttpError } = require("../utils/handleError")
 const io = require("socket.io")(3002, {
   cors: {
-    origin: "*"
+    origin: "https://flourishing-valkyrie-7a4fe1.netlify.app/"
   }
 });
 
