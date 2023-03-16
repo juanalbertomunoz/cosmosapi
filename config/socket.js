@@ -1,5 +1,9 @@
 const { handleHttpError } = require("../utils/handleError")
-const io = require("socket.io")(3002);
+const io = require("socket.io")(3002, {
+  cors: {
+    origin: "*"
+  }
+});
 
 io.on('connection', (socket) => {
     console.log('Una alerta ha llegado');

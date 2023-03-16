@@ -1,6 +1,8 @@
 const { handleHttpError } = require("../utils/handleError")
 const Alert = require("../models/alerts")
 const socketEmit = require("../config/socket")
+const getHomesbyid = require("../controllers/home")
+
 
 /**
  * CREATE ALERT AND SEND TO SOCKET
@@ -10,8 +12,11 @@ const socketEmit = require("../config/socket")
 
 const newAlert = async (req, res) => {
   try {
+      //const home= getHomesbyid(req.params.id)
+      //console.log(home)
       const data = await Alert.create({key: req.params.id, msm: req.params.id2, mac: req.params.id3})
-      socketEmit(req.params.id,req.params.id2,req.params.id3)
+      socketEmit(data)
+      //socketEmit(req.params.id,req.params.id2,req.params.id3)
       
       res.send({data});
   }catch (e)
