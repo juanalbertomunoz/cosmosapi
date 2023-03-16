@@ -12,7 +12,7 @@ const { handleHttpError } = require("../utils/handleError")
 const getHomes = async (req, res) => {
     try{
       //const user = req.res
-      console.log("body")
+     // console.log("body")
 
         const homes = await Home.find()
           res.json(homes)

@@ -22,6 +22,28 @@ const newAlert = async (req, res) => {
   }
 }
 
+/**
+ * GET ALERT BY KEY
+ * @param {*} req 
+ * @param {*} res 
+ */
+const getAlert = async (req, res) => {
+  try{
+    //req = matchedData(req)
+    //const {id} = req.params.id
+    const id = req.params.id
+    //console.log(id)
+    const data = await Alert.findOne({
+      key :  id
+    })
+    console.log (data)
+    res.send({ data })
+  }catch(e){
+    handleHttpError(res, "ERROR_GET_ALERT_HOME")
+  }
+}
+
+
 /*
 const io = require("socket.io")(3002);
 
@@ -48,4 +70,4 @@ const newAlert = async (req, res) => {
 }
 }*/
 
-module.exports = {newAlert}
+module.exports = {newAlert, getAlert}

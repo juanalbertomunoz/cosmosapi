@@ -13,6 +13,6 @@ router.post("/:id/:id2/:id3/", alertCtrl.newAlert)
 /**
  *  List alarm specific
  */
-//router.get("/:id", alertCtrl.getAlerts)
+router.get("/:id", alertCtrl.getAlert)
 
 module.exports = router
