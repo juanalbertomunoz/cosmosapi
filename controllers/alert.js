@@ -29,12 +29,12 @@ const newAlert = async (req, res) => {
  */
 const getAlert = async (req, res) => {
   try{
-    
+
     //req = matchedData(req)
     //const {id} = req.params.id
     const id = req.params.id
     //console.log(id)
-    const data = await Alert.findOne({
+    const data = await Alert.find({
       key :  id
     })
     console.log (data)
