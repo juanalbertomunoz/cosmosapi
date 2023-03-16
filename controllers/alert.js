@@ -29,6 +29,7 @@ const newAlert = async (req, res) => {
  */
 const getAlert = async (req, res) => {
   try{
+    
     //req = matchedData(req)
     //const {id} = req.params.id
     const id = req.params.id
