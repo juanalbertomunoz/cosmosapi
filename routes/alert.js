@@ -37,6 +37,33 @@ const alertCtrl = require("../controllers/alert")
  *                     type: string 
  *                   address:
  *                     type: string                
+ * 
+ *   put: 
+ *     summary: Actualiza la alerta .
+ *     description: Cambia el estado a true y adiciona la descripcion o proceso de la atencion.
+ *     parameters:
+ *       - in: url
+ *         name: _id
+ *         description: Identificador unico de la alerta
+ *         required: true
+ *         unique: true
+ *         schema:
+ *           type: string
+ *       - in: body
+ *         name: description
+ *         description: proceso de atención realizado a la alerta
+ *         required: true
+ *         unique: true
+ *         schema:
+ *           type: string
+ *       - in: body
+ *         name: estado
+ *         description: cambia el estado de la alerta a true
+ *         required: true
+ *         schema:
+ *           type: string
+ *       
+ *       
  */
 /**
  * create one register Shelly
