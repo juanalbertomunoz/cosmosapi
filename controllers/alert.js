@@ -16,7 +16,7 @@ const newAlert = async (req, res) => {
   try {
     const data = await Alert.create({key: req.params.id, msm: req.params.id2, mac: req.params.id3});
     io.emit('alertsequrete', data);
-    res.send({data});
+    return res.send({data});
   } catch (e) {
     console.error(e);
     handleHttpError(res, "ERROR_CREATE_CREATE_ALERT...");
