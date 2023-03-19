@@ -49,13 +49,7 @@ const createHome = async (req, res) => {
  * @param {*} res 
  */
 
-const socketEmit = async (param1, param2, param3) => {
-  try {
-    return io.emit('alertsecurity', { param1, param2, param3 });
-  } catch (error) {
-    console.log("**** ERROR SOCKET EMIT ****", error);
-  }
-}
+
 
 const getHomesbyid = async (id) => {
   try{
