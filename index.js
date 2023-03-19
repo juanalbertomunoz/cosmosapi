@@ -5,6 +5,9 @@ const express = require('express');
 const cors = require("cors")
 const app = express();
 const server = require('http').Server(app);
+const PORT = process.env.PORT || 3001;
+
+/*
 const io = require('socket.io')(server, {
   cors: {
     origin: '*',
@@ -14,13 +17,12 @@ const io = require('socket.io')(server, {
 //const io = socketIO(server);
 
 
-const PORT = process.env.PORT || 3001;
 
 
 io.on("connection", (socket) => {
   console.log("A client connected to the socket.io server");
 });
-
+*/
 app.use(cors())
 app.use(express.json())
 
