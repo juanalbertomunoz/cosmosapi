@@ -1,40 +1,22 @@
 const { handleHttpError } = require("../utils/handleError")
 const Alert = require("../models/alerts")
-const socketEmit = require("../config/socket")
-const getHomesbyid = require("../controllers/home")
+const io = require('../config/socket');
 const app = require("../index")
-//const socketIO = require("socket.io")
-const http = require("http")
-const server = http.createServer(app);
-const io = require('socket.io')(server, {
-  cors: {
-    origin: '*',
-    methods: ['GET', 'POST']
-  }
-});
-//const io = socketIO(server);
-
 
 io.on("connection", (socket) => {
   console.log("A client connected to the socket.io server");
 });
+
 /**
  * CREATE ALERT AND SEND TO SOCKET
  * @param {*} req 
  * @param {*} res 
  */
-
 const newAlert = async (req, res) => {
   try {
     const data = await Alert.create({key: req.params.id, msm: req.params.id2, mac: req.params.id3});
-   try{
     io.emit('alertsequrete', data);
     res.send({data});
-   }catch (e) {
-    console.error(e);
-    handleHttpError(res, "ERROR_EMITE_ALERT...");
-   }
-    
   } catch (e) {
     console.error(e);
     handleHttpError(res, "ERROR_CREATE_CREATE_ALERT...");
@@ -42,18 +24,12 @@ const newAlert = async (req, res) => {
 };
 
 const getAlert = async (req, res) => {
-  try{
+  try {
     const id = req.params.id;
-    const data = await Alert.find({
-      key :  id,
-      estado: false
-    }).catch((e) => {
-      console.error(e);
-      handleHttpError(res, "ERROR_GET_ALERT_HOME");
-    });
-    console.log (data)
+    const data = await Alert.find({ key: id, estado: false });
+    console.log(data)
     res.send(data)
-  }catch(e){
+  } catch (e) {
     console.error(e);
     handleHttpError(res, "ERROR_GET_ALERT_HOME");
   }
@@ -61,10 +37,7 @@ const getAlert = async (req, res) => {
 
 const updateAlert = async (req, res) => {
   try {
-    const data = await Alert.findByIdAndUpdate(req.params.id, req.body).catch((e) => {
-      console.error(e);
-      handleHttpError(res, "ERROR_UPDATE_ALARM");
-    });
+    const data = await Alert.findByIdAndUpdate(req.params.id, req.body);
     res.send({ data })
   } catch (e) {
     console.error(e);
@@ -72,5 +45,4 @@ const updateAlert = async (req, res) => {
   }
 };
 
-
-module.exports = {newAlert, getAlert, updateAlert}
+module.exports = { newAlert, getAlert, updateAlert }
