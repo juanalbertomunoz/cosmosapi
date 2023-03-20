@@ -20,11 +20,13 @@ io.on("connection", (socket) => {
 const newAlert = async (req, res) => {
   try {
     const data = await Alert.create({key: req.params.id, msm: req.params.id2, mac: req.params.id3});
+    //res.send(data)
+    console.log('ALERT SAVE')
     try{
       io.emit('alertsequrete', {data}); // emit an event to all connected sockets
-      res.send(data)
-      //console.log("provando", {data});
+      console.log('ALERT SEND');
     }
+    
   catch (e) {
     console.error(e);
     handleHttpError(res, "ERROR_EMIT_ALERT...");
