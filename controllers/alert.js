@@ -3,7 +3,7 @@ const {server} = require('../index');
 const Alert = require("../models/alerts")
 const io = require('socket.io')(server, {
   cors: {
-    origin: '*',
+    origin: 'https://flourishing-valkyrie-7a4fe1.netlify.app/',
     methods: ['GET', 'POST']
   },
   
@@ -26,7 +26,6 @@ const newAlert = async (req, res) => {
       io.emit('alertsequrete', {data}); // emit an event to all connected sockets
       console.log('ALERT SEND');
     }
-    
   catch (e) {
     console.error(e);
     handleHttpError(res, "ERROR_EMIT_ALERT...");
