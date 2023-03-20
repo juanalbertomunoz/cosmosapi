@@ -66,15 +66,12 @@ dbConnect()
 // Configurar socket.io-monitor
 //ioMonitor(io, { port: 8082, path: '/socket.io-monitor' });
 // Exponer la interfaz de usuario web en la ruta /socket.io/monitor
-io.on("connection", (socket) => {
-  console.log("A client connected to the socket.io server");
-});
-/*
+
 io.on("connection", (socket) => {
   console.log("New Connection Socket");
   socket.emit("alertsequrete");
 });
-*/
+
 app.get("/", (req, res) => {
   res.send("<span>Cosmos Server</span>");
 });
@@ -87,4 +84,4 @@ server.listen(PORT, () => {
     console.log('Server express is connected in ' + PORT + ' PORT')
 });
 */
-module.exports = io;
+//module.exports = io;
