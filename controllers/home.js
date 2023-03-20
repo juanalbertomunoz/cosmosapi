@@ -17,7 +17,7 @@ const getHomes = async (req, res) => {
         const homes = await Home.find()
           res.json(homes)
           //res.send({ data, user})
-          res.send({ data})
+          //res.send({ data})
     }catch(e){
         //res.send({data})
         handleHttpError(res, 'Error_get_homes')
