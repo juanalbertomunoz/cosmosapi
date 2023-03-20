@@ -21,15 +21,15 @@ app.set("port", PORT);
 //const newAlert = require('./controllers/alert').newAlert
 const http = require("http");
 const server = http.createServer(app);
-/*
+
 const io = new Server(server, {
   cors: {
     origin: "*",
     methods: ["GET"],
   },
 });
-*/
-const io = require('./config/socket')
+
+//const io = require('./config/socket')
 
 
 
@@ -87,4 +87,4 @@ server.listen(PORT, () => {
     console.log('Server express is connected in ' + PORT + ' PORT')
 });
 */
-module.exports = server;
+module.exports = io;

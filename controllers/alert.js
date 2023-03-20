@@ -3,7 +3,7 @@ const { handleHttpError } = require("../utils/handleError")
 const Alert = require("../models/alerts")
 //const {server} = require('../index');
 
-const io = require('../config/socket')
+const io = require('../index')
 
 //const io = Server();
 //const io = require('../index')
