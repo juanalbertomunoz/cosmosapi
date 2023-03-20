@@ -6,8 +6,16 @@ const cors = require("cors")
 const dbConnect = require("./config/mongo")
 const { Server } = require("socket.io");
 const app = express();
+const corsOptions = {
+  origin: "*",
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+app.use(cors(corsOptions));
 app.use(cors())
 app.use(express.json())
+app.set("port", 3001);
+
 const PORT = process.env.PORT || 3001;
 //const newAlert = require('./controllers/alert').newAlert
 const http = require("http");
@@ -67,8 +75,12 @@ app.get("/", (req, res) => {
   res.send("<span>Cosmos Server</span>");
 });
 
+server.listen(app.get("port"), () => {
+  console.log(`Server listen in the port: ${app.get("port")}`);
+});
+/*
 server.listen(PORT, () => {
     console.log('Server express is connected in ' + PORT + ' PORT')
 });
-
+*/
 //module.exports = {server};
