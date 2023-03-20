@@ -60,7 +60,7 @@ io.on("connection", (socket) => {
 
 io.on("connection", (socket) => {
   console.log("New Connection Socket");
-  //socket.emit("alertsequrete");
+  socket.emit("alertsequrete");
 });
 app.get("/", (req, res) => {
   res.send("<span>Cosmos Server</span>");
