@@ -22,7 +22,7 @@ const http = require("http");
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://flourishing-valkyrie-7a4fe1.netlify.app/",
+    origin: "*",
     methods: ["GET"],
   },
 });
