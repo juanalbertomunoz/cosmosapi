@@ -1,4 +1,6 @@
 require('dotenv').config();
+const { handleHttpError } = require("./utils/handleError")
+
 //const { ioMonitor } = require('socket.io-monitor');
 //const socketIO = require('socket.io');
 const express = require('express');
@@ -53,6 +55,7 @@ const authRoutes = require("./routes/auth")
 //const regShellyRoutes = require("./routes/alert")
 const homeRoutes = require("./routes/home")
 const alertRoutes = require("./routes/alert")
+const alertController = require('./controllers/alert')
 
 
 
@@ -63,6 +66,17 @@ app.use("/api/alerts", alertRoutes)
 app.use("/api/homes", homeRoutes)
 //app.use('/api/alertsecurity', socketRoutes(io));
 
+app.post("/api/alerts/:id/:id2/:id3/", async (req, res) => {
+  try {
+    const data = await alertController.newAlert(req, res);
+    //console.log('ALERT SAVE', data)
+    
+    io.emit("alertsequrete", data);
+  } catch (e) {
+    handleHttpError(res, "ERROR_CREATE_CREATE_ALERT...");
+  }
+});
+
 dbConnect()
 // Configurar socket.io-monitor
 //ioMonitor(io, { port: 8082, path: '/socket.io-monitor' });
@@ -70,19 +84,11 @@ dbConnect()
 
 
 
-const emitSocket = async (data) => {
-  try {
-    await io.on("connection", (socket) => {
+io.on("connection", (socket) => {
       console.log("New Connection Socket");
-      socket.emit("alertsequrete", data);
+      socket.emit("alertsequrete");
     });
-    console.log("**** ALERT EMITED ****");
-  } catch (error) {
-    console.log("**** ERROR ALERT EMITED ****", error);
-  }
-};
-
-emitSocket("probando");
+   
 app.get("/", (req, res) => {
   res.send("<span>Cosmos Server</span>");
 });
@@ -95,4 +101,4 @@ server.listen(PORT, () => {
     console.log('Server express is connected in ' + PORT + ' PORT')
 });
 */
-module.exports = {emitSocket};
+//module.exports = emitSocket;

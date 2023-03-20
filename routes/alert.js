@@ -5,7 +5,7 @@ const alertCtrl = require("../controllers/alert")
 /**
  * create one register Shelly
  */
-router.post("/:id/:id2/:id3/", alertCtrl.newAlert)
+//router.post("/:id/:id2/:id3/", alertCtrl.newAlert)
 
 /**
  *  List alarm specific

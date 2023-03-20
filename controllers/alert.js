@@ -4,7 +4,7 @@ const Alert = require("../models/alerts")
 //const {server} = require('../index');
 
 //const io = require('../config/socket');
-const emitSocket = require("../index");
+const {emitSocket} = require("../index");
 
 //const io = Server();
 
@@ -18,23 +18,8 @@ const newAlert = async (req, res) => {
   try {
     const data = await Alert.create({key: req.params.id, msm: req.params.id2, mac: req.params.id3});
     res.send('Ok')
-    console.log('ALERT SAVE')
-    
-    try{
-      /*
-      io.on("connection", (socket) => {
-        console.log("New Connection Socket");
-        socket.emit("alertsequrete", data);
-      });
-      */
-     emitSocket(data)
-     //console.log(io.emit('alertsequrete', {data})); // emit an event to all connected sockets
-      console.log('ALERT SEND');
-    }
-  catch (e) {
-    console.error(e);
-    handleHttpError(res, "ERROR_EMIT_ALERT...");
-  }
+    console.log('ALERT SAVE', data)
+    return data
   } catch (e) {
     console.error(e);
     handleHttpError(res, "ERROR_CREATE_CREATE_ALERT...");
