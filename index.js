@@ -14,9 +14,10 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(cors())
 app.use(express.json())
-app.set("port", 3001);
+
 
 const PORT = process.env.PORT || 3001;
+app.set("port", PORT);
 //const newAlert = require('./controllers/alert').newAlert
 const http = require("http");
 const server = http.createServer(app);
@@ -68,11 +69,12 @@ dbConnect()
 io.on("connection", (socket) => {
   console.log("A client connected to the socket.io server");
 });
-
+/*
 io.on("connection", (socket) => {
   console.log("New Connection Socket");
   socket.emit("alertsequrete");
 });
+*/
 app.get("/", (req, res) => {
   res.send("<span>Cosmos Server</span>");
 });
@@ -85,4 +87,4 @@ server.listen(PORT, () => {
     console.log('Server express is connected in ' + PORT + ' PORT')
 });
 */
-module.exports = {server};
+module.exports = server;
