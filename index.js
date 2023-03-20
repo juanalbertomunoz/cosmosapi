@@ -9,9 +9,6 @@ const PORT = process.env.PORT || 3001;
 //const newAlert = require('./controllers/alert').newAlert
 const io = require('./config/socket')
 
-io.on("connection", (socket) => {
-  console.log("A client connected to the socket.io server");
-});
 
 
 
@@ -52,6 +49,9 @@ dbConnect()
 // Configurar socket.io-monitor
 //ioMonitor(io, { port: 8082, path: '/socket.io-monitor' });
 // Exponer la interfaz de usuario web en la ruta /socket.io/monitor
+io.on("connection", (socket) => {
+  console.log("A client connected to the socket.io server");
+});
 
 
 server.listen(PORT, () => {

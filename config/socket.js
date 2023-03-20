@@ -5,9 +5,6 @@ const io = require('socket.io')(server, {
       methods: ['GET', 'POST']
     }
   });
-  io.on("connection", (socket) => {
-    console.log("A client connected to the socket.io server");
-  });
   
 
 
