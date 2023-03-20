@@ -28,7 +28,6 @@ const newAlert = async (req, res) => {
     console.error(e);
     handleHttpError(res, "ERROR_EMIT_ALERT...");
   }
-    //emitalert (data);    res.send({data});
   } catch (e) {
     console.error(e);
     handleHttpError(res, "ERROR_CREATE_CREATE_ALERT...");

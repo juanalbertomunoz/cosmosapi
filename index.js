@@ -1,8 +1,10 @@
 require('dotenv').config();
+//const { ioMonitor } = require('socket.io-monitor');
+//const socketIO = require('socket.io');
 const express = require('express');
 const cors = require("cors")
 const dbConnect = require("./config/mongo")
-//const { Server } = require("socket.io");
+const { Server } = require("socket.io");
 const app = express();
 const corsOptions = {
   origin: "*",
@@ -12,10 +14,10 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(cors())
 app.use(express.json())
-
+app.set("port", 3001);
 
 const PORT = process.env.PORT || 3001;
-app.set("port", PORT);
+//const newAlert = require('./controllers/alert').newAlert
 const http = require("http");
 const server = http.createServer(app);
 /*
@@ -28,6 +30,15 @@ const io = new Server(server, {
 */
 const io = require('./config/socket')
 
+
+
+/*
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+*/
 /**
  * SWAGGER
  */
@@ -54,10 +65,13 @@ dbConnect()
 // Configurar socket.io-monitor
 //ioMonitor(io, { port: 8082, path: '/socket.io-monitor' });
 // Exponer la interfaz de usuario web en la ruta /socket.io/monitor
+io.on("connection", (socket) => {
+  console.log("A client connected to the socket.io server");
+});
 
 io.on("connection", (socket) => {
   console.log("New Connection Socket");
-  //socket.emit("alertsequrete");
+  socket.emit("alertsequrete");
 });
 app.get("/", (req, res) => {
   res.send("<span>Cosmos Server</span>");
