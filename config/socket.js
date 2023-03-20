@@ -1,3 +1,4 @@
+/*
 const {server} = require('../index');
 const io = require('socket.io')(server, {
     cors: {
@@ -10,3 +11,4 @@ const io = require('socket.io')(server, {
 
 
 module.exports = io;
+*/
