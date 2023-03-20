@@ -3,7 +3,8 @@ const { handleHttpError } = require("../utils/handleError")
 const Alert = require("../models/alerts")
 //const {server} = require('../index');
 
-const io = require('../config/socket')
+//const io = require('../config/socket');
+const emitSocket = require("../index");
 
 //const io = Server();
 
@@ -26,7 +27,8 @@ const newAlert = async (req, res) => {
         socket.emit("alertsequrete", data);
       });
       */
-     console.log(io.emit('alertsequrete', {data})); // emit an event to all connected sockets
+     emitSocket(data)
+     //console.log(io.emit('alertsequrete', {data})); // emit an event to all connected sockets
       console.log('ALERT SEND');
     }
   catch (e) {

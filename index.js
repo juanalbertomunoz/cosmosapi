@@ -21,16 +21,16 @@ app.set("port", PORT);
 //const newAlert = require('./controllers/alert').newAlert
 const http = require("http");
 const server = http.createServer(app);
-/*
+
 const io = new Server(server, {
   cors: {
     origin: "*",
     methods: ["GET"],
   },
 });
-*/
 
-const io = require('./config/socket')
+
+//const io = require('./config/socket')
 
 
 
@@ -68,11 +68,21 @@ dbConnect()
 //ioMonitor(io, { port: 8082, path: '/socket.io-monitor' });
 // Exponer la interfaz de usuario web en la ruta /socket.io/monitor
 
-io.on("connection", (socket) => {
-  console.log("New Connection Socket");
-  socket.emit("alertsequrete");
-});
 
+
+const emitSocket = async (data) => {
+  try {
+    await io.on("connection", (socket) => {
+      console.log("New Connection Socket");
+      socket.emit("alertsequrete", data);
+    });
+    console.log("**** ALERT EMITED ****");
+  } catch (error) {
+    console.log("**** ERROR ALERT EMITED ****", error);
+  }
+};
+
+emitSocket("probando");
 app.get("/", (req, res) => {
   res.send("<span>Cosmos Server</span>");
 });
@@ -85,4 +95,4 @@ server.listen(PORT, () => {
     console.log('Server express is connected in ' + PORT + ' PORT')
 });
 */
-module.exports = {server};
+module.exports = {emitSocket};
