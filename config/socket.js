@@ -1,4 +1,4 @@
-/*
+
 const { Server } = require("socket.io");
 const server = require("../index")
 const io = new Server(server, {
@@ -11,4 +11,3 @@ const io = new Server(server, {
   
 
 module.exports = io;
-*/
