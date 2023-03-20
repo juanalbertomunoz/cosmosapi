@@ -1,12 +1,17 @@
 const { handleHttpError } = require("../utils/handleError")
+const {server} = require('../index');
 const Alert = require("../models/alerts")
-const io = require('../config/socket');
-const app = require("../index")
+const io = require('socket.io')(server, {
+  cors: {
+    origin: '*',
+    methods: ['GET', 'POST']
+  },
+  
+});
 
 io.on("connection", (socket) => {
   console.log("A client connected to the socket.io server");
 });
-
 /**
  * CREATE ALERT AND SEND TO SOCKET
  * @param {*} req 
@@ -15,8 +20,16 @@ io.on("connection", (socket) => {
 const newAlert = async (req, res) => {
   try {
     const data = await Alert.create({key: req.params.id, msm: req.params.id2, mac: req.params.id3});
-    io.emit('alertsequrete', data);
-    return res.send({data});
+    try{
+      io.emit('alertsequrete', {data}); // emit an event to all connected sockets
+      res.send(data)
+      //console.log("provando", {data});
+    }
+  catch (e) {
+    console.error(e);
+    handleHttpError(res, "ERROR_EMIT_ALERT...");
+  }
+    //emitalert (data);    res.send({data});
   } catch (e) {
     console.error(e);
     handleHttpError(res, "ERROR_CREATE_CREATE_ALERT...");

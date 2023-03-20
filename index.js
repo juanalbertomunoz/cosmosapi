@@ -1,28 +1,19 @@
 require('dotenv').config();
 //const { ioMonitor } = require('socket.io-monitor');
-const socketIO = require('socket.io');
+//const socketIO = require('socket.io');
 const express = require('express');
 const cors = require("cors")
 const app = express();
 const server = require('http').Server(app);
 const PORT = process.env.PORT || 3001;
+//const newAlert = require('./controllers/alert').newAlert
 
-/*
-const io = require('socket.io')(server, {
-  cors: {
-    origin: '*',
-    methods: ['GET', 'POST']
-  }
-});
-//const io = socketIO(server);
+
+ 
 
 
 
 
-io.on("connection", (socket) => {
-  console.log("A client connected to the socket.io server");
-});
-*/
 app.use(cors())
 app.use(express.json())
 app.use((req, res, next) => {
@@ -44,7 +35,7 @@ const authRoutes = require("./routes/auth")
 //const regShellyRoutes = require("./routes/alert")
 const homeRoutes = require("./routes/home")
 const alertRoutes = require("./routes/alert")
-const socketRoutes = require('./routes/socket');
+
 
 
 //Middleware
@@ -63,3 +54,5 @@ dbConnect()
 server.listen(PORT, () => {
     console.log('Server express is connected in ' + PORT + ' PORT')
 });
+
+module.exports = {server};
