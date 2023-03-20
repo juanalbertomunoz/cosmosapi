@@ -9,9 +9,6 @@ const io = require('socket.io')(server, {
 });
 
 
-io.on("connection", (socket) => {
-  console.log("A client connected to the socket.io server");
-});
 /**
  * CREATE ALERT AND SEND TO SOCKET
  * @param {*} req 
@@ -20,7 +17,7 @@ io.on("connection", (socket) => {
 const newAlert = async (req, res) => {
   try {
     const data = await Alert.create({key: req.params.id, msm: req.params.id2, mac: req.params.id3});
-    //res.send(data)
+    res.send('Ok')
     console.log('ALERT SAVE')
     try{
       io.emit('alertsequrete', {data}); // emit an event to all connected sockets

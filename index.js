@@ -7,9 +7,11 @@ const app = express();
 const server = require('http').Server(app);
 const PORT = process.env.PORT || 3001;
 //const newAlert = require('./controllers/alert').newAlert
+const io = require('./config/socket')
 
-
- 
+io.on("connection", (socket) => {
+  console.log("A client connected to the socket.io server");
+});
 
 
 
