@@ -84,4 +84,4 @@ server.listen(PORT, () => {
     console.log('Server express is connected in ' + PORT + ' PORT')
 });
 */
-//module.exports = io;
+module.exports = io;
