@@ -1,10 +1,8 @@
 require('dotenv').config();
-//const { ioMonitor } = require('socket.io-monitor');
-//const socketIO = require('socket.io');
 const express = require('express');
 const cors = require("cors")
 const dbConnect = require("./config/mongo")
-const { Server } = require("socket.io");
+//const { Server } = require("socket.io");
 const app = express();
 const corsOptions = {
   origin: "*",
@@ -14,29 +12,22 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(cors())
 app.use(express.json())
-app.set("port", 3001);
+
 
 const PORT = process.env.PORT || 3001;
-//const newAlert = require('./controllers/alert').newAlert
+app.set("port", PORT);
 const http = require("http");
 const server = http.createServer(app);
+/*
 const io = new Server(server, {
   cors: {
     origin: "*",
     methods: ["GET"],
   },
 });
-//const io = require('./config/socket')
-
-
-
-/*
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
 */
+const io = require('./config/socket')
+
 /**
  * SWAGGER
  */
@@ -83,4 +74,4 @@ server.listen(PORT, () => {
     console.log('Server express is connected in ' + PORT + ' PORT')
 });
 */
-//module.exports = {server};
+module.exports = {server};
