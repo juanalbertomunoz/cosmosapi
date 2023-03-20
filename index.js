@@ -8,7 +8,7 @@ const dbConnect = require("./config/mongo");
 //const newAlert = require('./controllers/alert').newAlert
 
 const corsOptions = {
-  origin: ["https://flourishing-valkyrie-7a4fe1.netlify.app/", '*'],
+  origin: '*',
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
