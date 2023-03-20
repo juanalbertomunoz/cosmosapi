@@ -20,7 +20,11 @@ const newAlert = async (req, res) => {
     res.send('Ok')
     console.log('ALERT SAVE')
     try{
-      console.log(io.emit('alertsequrete', {data})); // emit an event to all connected sockets
+      io.on("connection", (socket) => {
+        console.log("New alert emited");
+        socket.emit("alertsequrete", {data});
+      });
+      //console.log(io.emit('alertsequrete', {data})); // emit an event to all connected sockets
       console.log('ALERT SEND');
     }
   catch (e) {
