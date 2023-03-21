@@ -96,5 +96,9 @@ router.get("/", homeCtrl.getHomes)
  */
 router.post("/", homeCtrl.createHome)
 
+/**
+ *  Update home
+ */
+router.put("/:id", homeCtrl.updateHome)
 
 module.exports = router

@@ -20,7 +20,11 @@ const HomeScheme = new mongoose.Schema(
                    type: Number,
                     requerired: true
                  }
-             }
+             },
+        estado: {
+                type: Boolean,
+                default: false
+        }
             },
              {
         versionKey: false,

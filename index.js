@@ -56,6 +56,7 @@ const authRoutes = require("./routes/auth")
 const homeRoutes = require("./routes/home")
 const alertRoutes = require("./routes/alert")
 const alertController = require('./controllers/alert')
+const homeControler = require('./controllers/home')
 
 
 
@@ -66,11 +67,16 @@ app.use("/api/alerts", alertRoutes)
 app.use("/api/homes", homeRoutes)
 //app.use('/api/alertsecurity', socketRoutes(io));
 
+
+//WEBHOOK & SOCKET IO
 app.post("/api/alerts/:id/:id2/:id3/", async (req, res) => {
   try {
     const data = await alertController.newAlert(req, res);
-    //console.log('ALERT SAVE', data)
-    
+    req.body = {estado: true}
+    const homeData = await homeControler.updateHome(req,res);
+
+console.log(homeData)
+
     io.emit("alertsequrete", data);
   } catch (e) {
     handleHttpError(res, "ERROR_CREATE_CREATE_ALERT...");

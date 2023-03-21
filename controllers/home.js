@@ -64,5 +64,19 @@ const getHomesbyid = async (id) => {
   }
   
 }
+/**
+* Update home
+* @param {*} req 
+* @param {*} res 
+*/
+const updateHome = async (req, res) => {
+   try {
+     return await Home.findByIdAndUpdate(req.params.id, req.body)
+     } catch (e) {
+       console.log(e)
+       handleHttpError(e, "ERROR_UPDATE_ITEMS")
+     }
+   
+}
 
-module.exports = {getHomes, createHome, getHomesbyid}
+module.exports = {getHomes, createHome, getHomesbyid, updateHome}

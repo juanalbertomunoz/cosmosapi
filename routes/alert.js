@@ -2,6 +2,11 @@ const express = require("express")
 const router = express.Router()
 const alertCtrl = require("../controllers/alert")
 
+
+/**
+ * 
+ */
+
 /**
  * create one register Shelly
  */

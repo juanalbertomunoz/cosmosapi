@@ -4,7 +4,7 @@ const Alert = require("../models/alerts")
 //const {server} = require('../index');
 
 //const io = require('../config/socket');
-const {emitSocket} = require("../index");
+//const {emitSocket} = require("../index");
 
 //const io = Server();
 
@@ -40,6 +40,7 @@ const getAlert = async (req, res) => {
 
 const updateAlert = async (req, res) => {
   try {
+    
     const data = await Alert.findByIdAndUpdate(req.params.id, req.body);
     res.send({ data })
   } catch (e) {
