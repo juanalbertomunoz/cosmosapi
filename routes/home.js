@@ -57,7 +57,9 @@ const homeCtrl = require("../controllers/home")
  *                     latitud:
  *                       type: number  
  *                     longitud:
- *                       type: number                 
+ *                       type: number
+ *                 estado:
+ *                   type: boolean                 
  *   get:
  *     summary: Obtener todas las viviendas registradas.
  *     description: Retorna una lista con la información de todas las viviendas registradas en la base de datos.
@@ -81,7 +83,9 @@ const homeCtrl = require("../controllers/home")
  *                       latitud:
  *                         type: number  
  *                       longitud:
- *                         type: number                 
+ *                         type: number 
+ *                   estado:
+ *                     type: boolean                    
  */
 
 
