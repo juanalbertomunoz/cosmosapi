@@ -40,9 +40,10 @@ const getAlert = async (req, res) => {
 }
 
 const updateAlert = async (req, res) => {
-  const key = req.body.key;
+  //const key = req.body.key;
   try {
     const data = await Alert.findByIdAndUpdate(req.params.id, req.body);
+    const key = data.key;
     const alertsFalse = await Alert.findOne({ key: req.body.key, estado: false })
     console.log('resultado busqueda', alertsFalse)
     if (alertsFalse) {
@@ -67,3 +68,4 @@ const updateAlert = async (req, res) => {
 };
 
 module.exports = { newAlert, getAlert, updateAlert }
+

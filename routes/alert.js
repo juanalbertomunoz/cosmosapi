@@ -50,22 +50,11 @@ module.exports = router
  *           type: string
  *     responses:
  *       '200':
- *         description: ALERTA GUARDADA
+ *         description: Alerta guardada.
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 key: 
- *                   type: string
- *                 msm:
- *                   type: string
- *                 mac:
- *                   type: string
- *                 description: 
- *                   type: string
- *                 estado:
- *                   type: boolean   
+ *               $ref: '#/components/schemas/Alert'
  * 
  * /api/alerts/{key}:
  *   get:
@@ -86,16 +75,7 @@ module.exports = router
  *             schema:
  *               type: array
  *               items:
- *                 type: object
- *                 properties:
- *                   key:
- *                     type: string
- *                   msm:
- *                     type: string
- *                   mac:
- *                     type: string
- *                   estado:
- *                     type: boolean
+ *                 $ref: '#/components/schemas/Alert'
  * 
  * /api/alerts/{_id}:
  *   put:
@@ -104,38 +84,52 @@ module.exports = router
  *     parameters:
  *       - in: path
  *         name: _id
- *         description: Identificador de la vivienda.
+ *         description: Identificador único de la alerta.
  *         required: true
  *         schema:
  *           type: string
  *       - in: body
- *         name: body
- *         description: Campos a actualizar en la alerta.
+ *         name: alert
+ *         description: Información de la alerta a actualizar.
  *         required: true
  *         schema:
- *           type: object
- *           properties:
- *             description:
- *               type: string
- *             estado:
- *               type: boolean
+ *           $ref: '#/components/schemas/AlertInput'
  *     responses:
  *       '200':
  *         description: JSON de la alerta actualizada.
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 key:
- *                   type: string
- *                 msm:
- *                   type: string
- *                 mac:
- *                   type: string
- *                 description:
- *                   type: string
- *                 estado:
- *                   type: boolean
- */ 
+ *               $ref: '#/components/schemas/Alert'
+ * 
+ * components:
+ *   schemas:
+ *     Alert:
+ *       type: object
+ *       properties:
+ *         key: 
+ *           type: string
+ *         msm:
+ *           type: string
+ *         mac:
+ *           type: string
+ *         description: 
+ *           type: string
+ *         estado:
+ *           type: boolean 
+ *     AlertInput:
+ *       type: object
+ *       properties:
+ *         key:
+ *           type: string
+ *         description:
+ *           type: string
+ *         estado:
+ *           type: boolean
+ *       required:
+ *         - key
+ *         - description
+ *         - estado
+ */
+
 
