@@ -7,11 +7,17 @@ const express = require('express');
 const cors = require("cors")
 const dbConnect = require("./config/mongo")
 const { Server } = require("socket.io");
+const bodyParser = require('body-parser');
+
 const app = express();
 const corsOptions = {
   origin: "*",
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
+
+
+app.use(bodyParser.json()); // Analiza los cuerpos que sean tipo JSON
+app.use(bodyParser.urlencoded({ extended: true })); // Analiza los cuerpos que tengan el tipo 'application/x-www-form-urlencoded'
 
 app.use(cors(corsOptions));
 app.use(cors())
@@ -72,10 +78,10 @@ app.use("/api/homes", homeRoutes)
 app.post("/api/alerts/:id/:id2/:id3/", async (req, res) => {
   try {
     const data = await alertController.newAlert(req, res);
-    req.body = {estado: true}
-    const homeData = await homeControler.updateHome(req,res);
+    req.body = { estado: true }
+    const homeData = await homeControler.updateHome(req, res);
 
-console.log(homeData)
+    console.log(homeData)
 
     io.emit("alertsequrete", data);
   } catch (e) {
@@ -91,10 +97,10 @@ dbConnect()
 
 
 io.on("connection", (socket) => {
-      console.log("New Connection Socket");
-      socket.emit("alertsequrete");
-    });
-   
+  console.log("New Connection Socket");
+  socket.emit("alertsequrete");
+});
+
 app.get("/", (req, res) => {
   res.send("<span>Cosmos Server</span>");
 });
